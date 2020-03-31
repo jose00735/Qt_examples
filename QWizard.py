@@ -1,9 +1,9 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QVBoxLayout, QApplication, QWidget, QPushButton, QWizard
 import sys
 from PyQt5 import QtGui
 
 
-class Window(QMainWindow):
+class Window(QWidget):
     def __init__(self):
         super().__init__()
         self.title = "Pyqt Window"
@@ -18,6 +18,16 @@ class Window(QMainWindow):
         self.setWindowTitle(self.title)
         self.setGeometry(self.top, self. width, self.height, self.width)
 
+        vbox = QVBoxLayout()
+        button = QPushButton("Launch")
+        button.clicked.connect(self.btn_clicked)
+        vbox.addWidget(button)
+        self.setLayout(vbox)
+        self.wizard = QWizard()
+        self.wizard.setWindowTitle("Launching")
+
+    def btn_clicked(self):
+        self.wizard.open()
 
 if __name__ == "__main__":
     App = QApplication(sys.argv)
